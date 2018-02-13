@@ -1,11 +1,9 @@
 <?php
 
-require_once '../../autoload.php';
-
 use OpenTracing\NoopSpanContext;
 use Jaeger\Span;
 
-class TestSpan extends PHPUnit_Framework_TestCase
+class SpanTest extends PHPUnit_Framework_TestCase
 {
 
     public function testOverwriteOperationName(){

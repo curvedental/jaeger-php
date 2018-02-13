@@ -1,13 +1,11 @@
 <?php
 
-require_once '../../autoload.php';
-
 use Jaeger\Jaeger;
 use Jaeger\Reporter\RemoteReporter;
 use Jaeger\Sampler\ConstSampler;
 use Jaeger\Transport\TransportUdp;
 
-class TestJaeger extends PHPUnit_Framework_TestCase
+class JaegerTest extends PHPUnit_Framework_TestCase
 {
 
     public function testGetEnvTags(){

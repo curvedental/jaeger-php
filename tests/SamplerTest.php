@@ -1,11 +1,9 @@
 <?php
 
-require_once '../../autoload.php';
-
 use Jaeger\Sampler\ConstSampler;
 use Jaeger\Sampler\ProbabilisticSampler;
 
-class TestSampler extends PHPUnit_Framework_TestCase
+class SamplerTest extends PHPUnit_Framework_TestCase
 {
 
     public function testConstSampler(){
