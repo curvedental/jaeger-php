@@ -10,7 +10,7 @@ use Jaeger\Reporter\Reporter;
 use OpenTracing\SpanOptions;
 use OpenTracing\Reference;
 
-class Jaeger implements Tracer{
+class Jaeger implements Tracer {
 
     private $reporter = null;
 
@@ -230,6 +230,3 @@ class Jaeger implements Tracer{
         return microtime(true) * 10000 . rand(1000, 9999);
     }
 }
-
-
-?>

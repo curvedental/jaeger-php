@@ -26,7 +26,7 @@ class Span implements \OpenTracing\Span{
 
     public $references = [];
 
-    public function __construct($operationName, SpanContext $spanContext, $references){
+    public function __construct($operationName, SpanContext $spanContext, $references = array()){
         $this->operationName = $operationName;
         $this->startTime = $this->microtimeToInt();
         $this->spanContext = $spanContext;

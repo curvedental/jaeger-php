@@ -14,6 +14,7 @@ class JaegerTest extends PHPUnit_Framework_TestCase
         $reporter = new RemoteReporter($tranSport);
         $sampler = new ConstSampler();
 
+        $_SERVER['JAEGER_TAGS'] = 'foo=bar';
         $Jaeger = new Jaeger('getEnvTags', $reporter, $sampler);
         $tags = $Jaeger->getEnvTags();
 

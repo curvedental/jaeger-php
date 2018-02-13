@@ -13,7 +13,7 @@
   "require":           {
     "php": ">=5.5.0",
     "packaged/thrift" : "0.10.0",
-    "curvedental/opentracing" : "1.0.0-beta3"
+    "curvedental/opentracing" : "1.0.0-beta2"
   },
   "authors": [
     {
