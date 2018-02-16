@@ -68,12 +68,9 @@ class Jaeger implements Tracer {
      * @param array $options
      * @return Span
      */
-    public function startSpan($operationName, $options = []){
-
+    public function startSpan($operationName, $options = array()){
         if (is_array($options)) {
             $options = SpanOptions::create($options);
-        }else{
-            throw new \Exception("options is not array");
         }
 
         $references = $options->getReferences();
