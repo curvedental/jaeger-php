@@ -2,7 +2,6 @@
 
 namespace Jaeger;
 
-use OpenTracing\SpanContext;
 use OpenTracing\Reference;
 use Jaeger\Thrift\SpanRefType;
 
@@ -26,7 +25,7 @@ class Span implements \OpenTracing\Span{
 
     public $references = [];
 
-    public function __construct($operationName, SpanContext $spanContext, $references = array()){
+    public function __construct($operationName, \OpenTracing\SpanContext $spanContext, $references = array()){
         $this->operationName = $operationName;
         $this->startTime = $this->microtimeToInt();
         $this->spanContext = $spanContext;
@@ -41,7 +40,7 @@ class Span implements \OpenTracing\Span{
     }
 
     /**
-     * @return SpanContext
+     * @return OpenTracing\SpanContext
      */
     public function getContext(){
         return $this->spanContext;
