@@ -227,6 +227,7 @@ class Jaeger implements Tracer {
 
 
     private function generateId(){
-        return microtime(true) * 10000 . rand(1000, 9999);
+        list($usec, $sec) = explode(' ', microtime());
+        return $sec . round($usec * 10000, 0) . rand(1000, 9999);
     }
 }
