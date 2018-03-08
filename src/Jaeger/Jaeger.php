@@ -16,6 +16,8 @@ class Jaeger implements Tracer {
 
     private $sampler = null;
 
+    private $sampled = false;
+
     private $gen128bit = false;
 
     public static $handleProto = null;
@@ -36,11 +38,13 @@ class Jaeger implements Tracer {
 
     public $spanThrifts = [];
 
+
     public function __construct($serverName = '', Reporter $reporter, Sampler $sampler){
 
         $this->reporter = $reporter;
 
         $this->sampler = $sampler;
+        $this->sampled = $sampler->IsSampled();
         $this->setTags($this->sampler->getTags());
         $this->setTags($this->getEnvTags());
 
@@ -88,7 +92,7 @@ class Jaeger implements Tracer {
         if(!$hasParent || !$parentSpan->traceIdLow){
             $low = $this->generateId();
             $spanId = $low;
-            $flags = $this->sampler->IsSampled();
+            $flags = $this->sampled ? 1 : 0;
             $newSpan = new \Jaeger\SpanContext($spanId, 0, $flags, null, 0);
             $newSpan->traceIdLow = $low;
             if($this->gen128bit == true){
