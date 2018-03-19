@@ -81,14 +81,15 @@ class TransportUdp implements Transport{
                 continue;
             }
 
-            $this->bufferSize += $spanSize;
-            if($this->bufferSize > self::$maxSpanBytes){
-                $jaeger->spanThrifts[] = $spanThrift;
+            if(($this->bufferSize + $spanSize) > self::$maxSpanBytes){
                 self::$batchs[] = ['thriftProcess' => $jaeger->processThrift
                     , 'thriftSpans' => $jaeger->spanThrifts];
 
                 $this->flush();
+                $this->bufferSize += $spanSize;
+                $jaeger->spanThrifts = [$spanThrift];
             }else{
+                $this->bufferSize += $spanSize;
                 $jaeger->spanThrifts[] = $spanThrift;
             }
         }
